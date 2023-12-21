@@ -1,0 +1,21 @@
+
+.image-container img {
+    width: 250px
+  }
+
+  .button {
+    margin: 10px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+@media screen and (max-width: 500px) {
+.content {
+  display: flex;
+  flex-direction: column;
+}
+}

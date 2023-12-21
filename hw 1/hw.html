@@ -1,0 +1,81 @@
+<html>
+
+<head>
+  <title>HTML with 3 different div class</title>
+  <link rel="stylesheet" href="hw.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"
+        alt="Image 1">
+      <button id="button1">Mua hàng</button>
+    </div>
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"
+        alt="Image 2">
+      <button id="button2">Mua hàng</button>
+    </div>
+    <div class="image-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"
+        alt="Image 3">
+      <button id="button3">Mua hàng</button>
+    </div>
+  </div>
+
+  <div>
+    <button> giỏ hàng</button>
+<div id="notification">
+</div>
+</div>
+
+<script>
+var shoppingCart = [];
+var notificationNumber = 0;
+var maxNotificationNumber = 3;
+var button1Clicked = false;
+var button2Clicked = false;
+var button3Clicked = false;
+
+function addItemToCart(item) {
+  shoppingCart.push(item);
+  notificationNumber++;
+  showNotification();
+}
+
+function showNotification() {
+  var notification = document.getElementById("notification");
+  notification.innerHTML = Math.min(maxNotificationNumber, notificationNumber);
+}
+
+document.getElementById("button1").addEventListener("click", function(event) {
+  if (!button1Clicked) {
+    event.preventDefault();
+    event.returnValue = true;
+    addItemToCart("Item 1");
+    button1Clicked = true;
+  }
+});
+
+document.getElementById("button2").addEventListener("click", function(event) {
+  if (!button2Clicked) {
+    event.preventDefault();
+    event.returnValue = true;
+    addItemToCart("Item 2");
+    button2Clicked = true;
+  }
+});
+
+document.getElementById("button3").addEventListener("click", function(event) {
+  if (!button3Clicked) {
+    event.preventDefault();
+    event.returnValue = true;
+    addItemToCart("Item 3");
+    button3Clicked = true;
+  }
+});
+</script>
+</body>
+
+</html>

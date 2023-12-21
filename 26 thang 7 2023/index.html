@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Count Up Timer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .timer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="timer">
+    <div class="time"></div>
+    <button id="onoff">On/Off</button>
+  </div>
+
+  <script>
+    let timer = document.querySelector(".timer");
+    let time = {
+      hour: 0,
+      minute: 0,
+      second: 0,
+    };
+    let isOn = true;
+
+    function tick() {
+      if (isOn) {
+        time.second++;
+
+        if (time.second === 60) {
+          time.second = 0;
+          time.minute++;
+
+          if (time.minute === 60) {
+            time.minute = 0;
+            time.hour++;
+          }
+        }
+
+        timer.querySelector(".time").textContent =
+          `${time.hour}:${time.minute}:${time.second}`;
+      }
+    }
+
+    if (time.second < 10 || time.minute < 10 || time.hour < 10) {
+      timer.querySelector(".time").textContent =
+        `${"0" + time.hour}:${"0" + time.minute}:${"0" + time.second}`;
+    }
+    else if ((time.second >= 10 && time.minute >= 10 && time.hour >= 10))  {
+      timer.querySelector(".time").textContent =
+        `${time.hour}:${time.minute}:${time.second}`;
+    }
+
+    let interval = setInterval(tick, 1000);
+
+    document.querySelector("#onoff").addEventListener("click", function () {
+      isOn = !isOn;
+
+      if (isOn) {
+        interval = setInterval(tick, 1000);
+      } else {
+        clearInterval(interval);
+      }
+    });
+  </script>
+</body>
+
+</html>
